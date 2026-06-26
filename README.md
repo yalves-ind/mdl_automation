@@ -50,6 +50,12 @@ A ordem das pastas e dos arquivos reflete a sequência do processo:
 | 2.2 | [`2_check_conclusao.js`](2_conclusao/2_check_conclusao.js) | Mesma tela de conclusão de atividades | Verifica se todas as atividades foram marcadas corretamente, seguindo as mesmas regras do script anterior. Classifica em **completos / parciais / vazios / não vistos**. |
 | 2.3 | [`3_check_course_completion.js`](2_conclusao/3_check_course_completion.js) | Report de **Course completion** (ou da trilha) | Validação final: confirma que as aulas/cursos (no caso das trilhas) estão todos marcados e que o **curso aparece como completo**. |
 
+### 3. Utilitários — pasta [`3_utils/`](3_utils/)
+
+| Script | Onde rodar | O que faz |
+|--------|-----------|-----------|
+| [`1_inspecionar_localstorage.js`](3_utils/1_inspecionar_localstorage.js) | Qualquer página do Moodle (mesmo domínio) | Varre o `localStorage` em busca do estado deixado pelos scripts de conclusão (`conclusao_curso_*`, `check_conclusao_*`, `check_course_completion_*`), lista cada execução "perdida" com um resumo e gera os comandos prontos para limpar. **Só lê — não apaga nada sozinho.** Atalho `window.__lsLixo.limparTudo()` para remover todas de uma vez. |
+
 ---
 
 ## Observações técnicas
@@ -73,8 +79,10 @@ mdl_automation/
 ├── 1_matricula/
 │   ├── 1_check_emails.js       # confere quem falta matricular
 │   └── 2_matricula_alunos.js   # seleciona alunos no pop-up de matrícula
-└── 2_conclusao/
-    ├── 1_concluir_curso.js          # marca atividades como concluídas
-    ├── 2_check_conclusao.js         # valida marcação das atividades
-    └── 3_check_course_completion.js # valida conclusão do curso/trilha
+├── 2_conclusao/
+│   ├── 1_concluir_curso.js          # marca atividades como concluídas
+│   ├── 2_check_conclusao.js         # valida marcação das atividades
+│   └── 3_check_course_completion.js # valida conclusão do curso/trilha
+└── 3_utils/
+    └── 1_inspecionar_localstorage.js # lista/limpa estado deixado no localStorage
 ```
